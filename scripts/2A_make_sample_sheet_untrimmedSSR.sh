@@ -8,8 +8,8 @@
 source ./config.cfg
 
 # Create .list files with R1 and R2 fastqs.  Sort will put them in same orders, assuming files are paired
-find ${FASTQDIR_UNTRIMMED} -maxdepth 1 -name "*.fastq" | grep -e "_1" | sort > R1.list
-find ${FASTQDIR_UNTRIMMED} -maxdepth 1 -name "*.fastq" | grep -e "_2" | sort > R2.list
+find ${FASTQDIR_UNTRIMMED} -maxdepth 1 -name "*.fastq" | grep -e "_2\." | sort > R1.list
+find ${FASTQDIR_UNTRIMMED} -maxdepth 1 -name "*.fastq" | grep -e "_2\." | sort > R2.list
 
 if [ -f "${SAMPLE_SHEET_PATH}" ] ; then
   rm "${SAMPLE_SHEET_PATH}"

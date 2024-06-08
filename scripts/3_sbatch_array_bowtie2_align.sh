@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --partition=short
 #SBATCH --job-name=alignRNA_bowtie
-#SBATCH --time=04:00:00
+#SBATCH --time=08:00:00
 #SBATCH --array=1-6%7
 #SBATCH --ntasks=6
 #SBATCH --mem=100G
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=8
 #SBATCH --output=/work/geisingerlab/Mark/rnaSeq/2024-06-07_bowtie_sRNAs-from-palethorpe/logs/%x-%j-%a.log
 #SBATCH --error=/work/geisingerlab/Mark/rnaSeq/2024-06-07_bowtie_sRNAs-from-palethorpe/logs/%x-%j-%a.err
 #SBATCH --mail-type=END,FAIL
@@ -36,4 +36,4 @@ r2=$(sed -n "$SLURM_ARRAY_TASK_ID"p $SAMPLE_SHEET_PATH |  awk '{print $3}')
 echo "Running Bowtie2 on files $r1 and $r2"
 
 # Bowtie2 in paired end mode
-bowtie2 --local -x $BT2_OUT_BASE -q -1 $r1 -2 $r2 -S $MAPPED_DIR/$name.sam
+bowtie2 --local -p 8 -x $BT2_OUT_BASE -q -1 $r1 -2 $r2 -S $MAPPED_DIR/$name.sam

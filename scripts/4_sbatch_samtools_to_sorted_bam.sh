@@ -37,5 +37,7 @@ samtools sort ${MAPPED_DIR}/${current_name_no_ext}.bam -o "${MAPPED_DIR}/${curre
 
 echo "cleaning up: moving .sam and unsorted .bam files to $MAPPED_DIR/intermediate_files"
 mkdir -p $MAPPED_DIR/intermediate_files
+echo "moving ${current_file}"
 mv ${current_file} intermediate_files/
+echo "moving ${current_file}${current_name_no_ext}.bam"
 mv "${current_name_no_ext}".bam intermediate_files/

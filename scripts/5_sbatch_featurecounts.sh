@@ -12,7 +12,7 @@
 echo "Loading environment and tools"
 module load subread/2.0.6
 
-source ./config_bowtie.cfg
+source ./config.cfg
 echo "featureCounts file name: $COUNTS_FILE found in $COUNTS_OUTDIR"
 echo "genome GTF reference file: $GENOME_GTF"
 echo ".bam input files were found in: $MAPPED_DIR"

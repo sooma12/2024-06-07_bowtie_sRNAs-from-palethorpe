@@ -2,12 +2,12 @@
 #SBATCH --partition=short
 #SBATCH --job-name=samtools_to_sorted_bam
 #SBATCH --time=04:00:00
-#SBATCH --array=1-9%10
-#SBATCH --ntasks=9
+#SBATCH --array=1-6%7
+#SBATCH --ntasks=6
 #SBATCH --mem=100G
 #SBATCH --cpus-per-task=1
-#SBATCH --output=/work/geisingerlab/Mark/rnaSeq/2024-04-03_pbpGlpsB_clean-redo/test_bowtie/logs/%x-%j.log
-#SBATCH --error=/work/geisingerlab/Mark/rnaSeq/2024-04-03_pbpGlpsB_clean-redo/test_bowtie/logs/%x-%j.err
+#SBATCH --output=/work/geisingerlab/Mark/rnaSeq/2024-06-07_bowtie_sRNAs-from-palethorpe/logs/%x-%j.log
+#SBATCH --error=/work/geisingerlab/Mark/rnaSeq/2024-06-07_bowtie_sRNAs-from-palethorpe/logs/%x-%j.err
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=soo.m@northeastern.edu
 
@@ -18,7 +18,7 @@
 echo "Loading tools"
 module load samtools/1.19.2
 
-source ./config_bowtie.cfg
+source ./config.cfg
 
 echo "Looking for .sam files and outputting sorted bams in $MAPPED_DIR"
 
@@ -35,6 +35,7 @@ current_name_no_ext="${current_name%.*}"
 samtools view -bS "${current_file}" > ${MAPPED_DIR}/${current_name_no_ext}.bam
 samtools sort ${MAPPED_DIR}/${current_name_no_ext}.bam -o "${MAPPED_DIR}/${current_name_no_ext}"_sorted.bam
 
+echo "cleaning up: moving .sam and unsorted .bam files to $MAPPED_DIR/intermediate_files"
 mkdir -p $MAPPED_DIR/intermediate_files
 mv ${current_file} intermediate_files/
 mv "${current_name_no_ext}".bam intermediate_files/

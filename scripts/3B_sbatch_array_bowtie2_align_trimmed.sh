@@ -25,11 +25,7 @@ echo "Bowtie2 reference genome index basename: $BT2_OUT_BASE"
 echo "sample sheet located at $TRIMMED_SAMPLE_SHEET"
 echo "alignment output directory containing .bam files: $MAPPED_TRIMMED_DIR"
 
-mkdir -p $MAPPED_DIR
-
-# Array job!  Used my sample sheet technique from 2023-11-13 breseq for this.
-# NOTE!!! sample sheet prep is moved to separate script.
-# Run that script before this one!
+mkdir -p $MAPPED_TRIMMED_DIR
 
 # sed and awk read through the sample sheet and grab each whitespace-separated value
 name=$(sed -n "$SLURM_ARRAY_TASK_ID"p $TRIMMED_SAMPLE_SHEET |  awk '{print $1}')

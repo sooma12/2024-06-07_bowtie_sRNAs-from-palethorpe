@@ -1,5 +1,5 @@
 #!/bin/bash
-# 2A_make_sample_sheet_untrimmedSSR.sh
+# 2_make_sample_sheet_SEreads.sh
 # Makes a sample_sheet.txt containing sample ID and R1 and R2 filepaths
 # Assumes each sample file is in the format: SRR16949318_1.fastq
 # Script uses a split on "_" to grab the sample ID, e.g. SRR16949318.  Must modify this if sample file names are different!

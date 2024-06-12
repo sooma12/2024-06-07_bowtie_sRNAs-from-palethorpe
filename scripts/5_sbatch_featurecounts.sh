@@ -25,5 +25,6 @@ featureCounts \
 -a $GENOME_GTF \
 -o $COUNTS_OUTDIR/$COUNTS_FILE \
 -p \
+--countReadPairs \
 -t sRNA \
 $MAPPED_DIR/*.bam

@@ -43,5 +43,5 @@ echo "cleaning up: moving .sam and unsorted .bam files to $MAPPED_TRIMMED_DIR/in
 mkdir -p $MAPPED_TRIMMED_DIR/intermediate_files
 echo "moving ${current_file}"
 mv ${current_file} intermediate_files/
-echo "moving ${current_file}${current_name_no_ext}.bam"
+echo "moving ${current_name_no_ext}.bam"
 mv "${current_name_no_ext}".bam intermediate_files/
